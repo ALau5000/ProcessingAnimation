@@ -26,7 +26,11 @@ void setup() {
 void draw() {
   background(#7B68EE);
   
+  // gravity
+  playerY += 3;
+  
   move();
+  
   // sun
   noStroke();
   fill(#FF4500);
