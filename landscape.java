@@ -9,7 +9,7 @@ void setup() {
   playerX = 400;
   playerY = 400;
   
-  rain = new PVector[100];
+  rain = new PVector[200];
   for(int i = 0; i < rain.length; i++) {
     float x = random(0, width);
     float y = random(0, 400);
