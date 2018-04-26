@@ -1,4 +1,4 @@
-PVector[] birds, rain;
+PVector[] birds, rain, snow;
 boolean[] keys = new boolean[128];  
 float playerX;
 float playerY;
@@ -12,14 +12,21 @@ void setup() {
   rain = new PVector[200];
   for(int i = 0; i < rain.length; i++) {
     float x = random(0, width);
-    float y = random(0, 400);
+    float y = random(0, height-100);
     rain[i] = new PVector(x, y);
   }
   birds = new PVector[10];
-  for (int i = 0; i < birds.length; i++) {
+  for(int i = 0; i < birds.length; i++) {
     float x = random(0, width);
-    float y = random(0, 400);
+    float y = random(0, height-100);
     birds[i] = new PVector(x, y);
+  }
+  
+  snow = new PVector[300];
+  for(int i = 0; i < snow.length; i++) {
+    float x = random(0, width);
+    float y = random(0, height-100);
+    snow[i] = new PVector(x, y);
   }
 }
 
@@ -72,6 +79,7 @@ void draw() {
     }
   }
   
+  // rain speed
   for(int i = 0; i < rain.length; i++) {
     float ySpeed = random(0, 30);
     // move each raindrop
@@ -86,6 +94,21 @@ void draw() {
     //draw rain
     fill(#FF0000);
     rect(rain[i].x, rain[i].y, 3, 10);
+  }
+  
+  // add snow speed
+  for(int i = 0; i < snow.length; i++) {
+    float xSpeed = random(-30, 0);
+    float ySpeed = random(0, 30);
+    snow[i].add(xSpeed, ySpeed);
+    
+    if(snow[i].x < 0) {
+      snow[i].x = random(-200, width);
+      snow[i].y = (int) random(-200, height);
+    }
+    
+    fill(#FFFAFA);
+    ellipse(snow[i].x, snow[i].y, 5, 5);
   }
    
   // Player 
