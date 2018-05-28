@@ -9,6 +9,15 @@ class Level {
       if (topCollide(p, platforms[i])) {
         p.touchPlatformTop(platforms[i].y);
         break;
+      } if (botCollide(p, platforms[i])) {
+        p.touchPlatformBot();
+        break;
+      } if (leftCollide(p, platforms[i])) {
+        p.touchPlatformLeft();
+        break;
+      } if (rightCollide(p, platforms[i])) {
+        p.touchPlatformRight();
+        break;
       } else {
         p.topCollide = false;
       }

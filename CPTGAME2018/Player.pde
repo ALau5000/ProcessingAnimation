@@ -1,7 +1,7 @@
 class Player {
   float x, y, w, h, g;
   float xSpeed, ySpeed, maxSpeed;
-  boolean topCollide;
+  boolean topCollide, botCollide, leftCollide, rightCollide;
   
   Player() {
     x = 0;
@@ -57,7 +57,20 @@ class Player {
      topCollide = true;  
      y = locY-h; //player's location at y always stays -50 from platform when touching
    }              // any platform. So player will always be standing on platform
-     
-      
+   
+   void touchPlatformBot() { // when player jumps and hits the bottom of a platform
+    botCollide = true;      // he won't go through
+    ySpeed = 0;
+  }
+  
+  void touchPlatformLeft() {  // player can't jump through left side of platforms
+    x -= 5;
+    leftCollide = true;
+  }
+  
+  void touchPlatformRight() { // player can't jump through right side of platforms
+    x = x+5;
+    rightCollide = true;
+  }
     
 }

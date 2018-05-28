@@ -14,4 +14,6 @@ class Platform {
     rect(x, y, w, h);
     ellipse(x, y, 5, 5);
   }
+  
+  
 }

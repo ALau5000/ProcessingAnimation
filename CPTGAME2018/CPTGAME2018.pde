@@ -13,8 +13,8 @@ void setup() {
   p = new Player();
   l = new Level();
   platforms = new Platform[2];              //draw platforms
-  platforms[0] = new Platform(0, 700, width, 200);
-  platforms[1] = new Platform(500, 400, 200, 300);
+  platforms[0] = new Platform(500, 400, 200, 400);
+  platforms[1] = new Platform(0, 700, width, 200);
 }
 
 void draw() {
@@ -69,9 +69,39 @@ void keyReleased() {
 boolean topCollide(Player p, Platform pl) {
   
   if (p.x > pl.x-p.w && p.x < pl.x+pl.w) { // if player touches the top of a platform
-    if (p.y >= pl.y-p.h && p.y <= pl.y-p.h+5){  // return true
+    if (p.y >= pl.y-p.h && p.y <= pl.y-p.h+6){  // return true
       return true;
     }
   }
   return false;
 } 
+
+boolean botCollide(Player p, Platform pl) {
+  
+  if (p.x > pl.x-p.w && p.x < pl.x+pl.w) {
+    if(p.y > pl.y+pl.h && p.y < pl.y+pl.h+5) {
+      return true;
+    }
+  }
+  return false; 
+}
+
+boolean leftCollide(Player p, Platform pl) {
+  
+ if (p.x >= pl.x-p.w && p.x <= pl.x) {
+   if (p.y > pl.y-p.h && p.y < pl.y+pl.h) {
+    return true;
+   }
+ }
+  return false;
+}
+
+boolean rightCollide(Player p, Platform pl) {
+  
+  if (p.x >= pl.x+pl.w && p.x <= pl.x+pl.w) {
+    if (p.y > pl.y-p.h && p.y < pl.y+pl.h) {
+    return true;
+    }
+  }
+  return false;
+}
