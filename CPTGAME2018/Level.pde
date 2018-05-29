@@ -13,11 +13,13 @@ class Level {
         p.touchPlatformBot();
         break;
       } if (leftCollide(p, platforms[i])) {
-        p.touchPlatformLeft();
+        p.touchPlatformLeft(platforms[i].x);
         break;
       } if (rightCollide(p, platforms[i])) {
         p.touchPlatformRight();
         break;
+      //} if (p.y >= platforms[0].y) {
+        //p.y = platforms[0].y-p.h;
       } else {
         p.topCollide = false;
       }

@@ -12,9 +12,11 @@ void setup() {
   screen = "lvl1";
   p = new Player();
   l = new Level();
-  platforms = new Platform[2];              //draw platforms
-  platforms[0] = new Platform(500, 400, 200, 400);
-  platforms[1] = new Platform(0, 700, width, 200);
+  platforms = new Platform[4];              //draw platforms
+  platforms[0] = new Platform(0, 700, width, 200);
+  platforms[1] = new Platform(300, 650, 199, 10);
+  platforms[2] = new Platform(200, 500, 180, 100);
+  platforms[3] = new Platform(500, 400, 200, 240);
 }
 
 void draw() {
@@ -104,4 +106,11 @@ boolean rightCollide(Player p, Platform pl) {
     }
   }
   return false;
+}
+
+void mouseClicked() {
+  p.x = mouseX;
+  p.y = mouseY;
+  p.g = 0;
+  p.g = 0.3;
 }

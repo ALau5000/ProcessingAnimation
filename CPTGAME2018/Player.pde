@@ -6,8 +6,8 @@ class Player {
   Player() {
     x = 0;
     y = 600;
-    w = 50;
-    h = 50;
+    w = 35;
+    h = 35;
     g = 0.3;      //gravity
     
     xSpeed = 0;
@@ -30,7 +30,7 @@ class Player {
     } else if (!left && !right) {   //no movement in x-axis if left and right isn't pressed
       xSpeed = 0;
     } if (up && topCollide) {  // only jump once when on platform
-      ySpeed = -8;
+      ySpeed = -7;
     } if (!topCollide) {
       ySpeed += g;
     } 
@@ -59,17 +59,19 @@ class Player {
    }              // any platform. So player will always be standing on platform
    
    void touchPlatformBot() { // when player jumps and hits the bottom of a platform
-    botCollide = true;      // he won't go through
     ySpeed = 0;
+    botCollide = true;      // he won't go through
+    
   }
   
-  void touchPlatformLeft() {  // player can't jump through left side of platforms
-    x -= 5;
+  void touchPlatformLeft(float locX) {  // player can't jump through left side of platforms
+    
     leftCollide = true;
+    x = locX-w;
   }
   
   void touchPlatformRight() { // player can't jump through right side of platforms
-    x = x+5;
+    x+=5;
     rightCollide = true;
   }
     
