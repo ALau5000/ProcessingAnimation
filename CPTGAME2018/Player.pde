@@ -8,10 +8,11 @@ class Player {
     y = 600;
     w = 35;
     h = 35;
-    g = 0.3;      //gravity
+    g = 0.1;      //gravity
     
     xSpeed = 0;
     ySpeed = 0;
+    maxSpeed = 10;
    
   }
   
@@ -37,6 +38,12 @@ class Player {
     
     x += xSpeed;      
     y += ySpeed;
+    
+    if (ySpeed >= maxSpeed) {
+      g = 0;
+    } else {
+      g = 0.3;
+    }
    
   }
   
@@ -74,5 +81,14 @@ class Player {
     x+=5;
     rightCollide = true;
   }
-    
+  
+  void enemyCollide() {
+    for (int i = 0; i < enemies.length; i++) {
+      if (intersectEnemy(p, enemies[i])) {
+        screen = "gameover";
+      }
+    }
+  }
 }
+      
+    

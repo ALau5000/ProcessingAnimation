@@ -1,7 +1,9 @@
 //import java.awt.*;
 
 Player p;
+//Enemy e;
 Platform[] platforms;  //make class Platform into an array
+Enemy[] enemies;       //make class Enemy into an array
 Level l;
 String screen;
 boolean left, right, up, down;
@@ -12,17 +14,29 @@ void setup() {
   screen = "lvl1";
   p = new Player();
   l = new Level();
+//  e = new Enemy(1000, 600);
   platforms = new Platform[4];              //draw platforms
   platforms[0] = new Platform(0, 700, width, 200);
   platforms[1] = new Platform(300, 650, 199, 10);
-  platforms[2] = new Platform(200, 500, 180, 100);
-  platforms[3] = new Platform(500, 400, 200, 240);
+  platforms[2] = new Platform(200, 500, 200, 100);
+  platforms[3] = new Platform(500, 400, 200, 250);
+  enemies = new Enemy[1];
+  enemies[0] = new Enemy(1000, 600);
 }
 
 void draw() {
-  if (screen == "lvl1") {      
+  if (screen == "tutorial") {
+    tutorial();
+  } if (screen == "lvl1") {      
     lvl1();
-  }
+  } else if (screen == "gameover") {
+    gameover();
+  } 
+}
+
+void tutorial() {
+  background(255, 0, 0);
+  l.tutorial();
 }
 
 void lvl1() {
@@ -31,7 +45,15 @@ void lvl1() {
   p.boundaries();
   p.move();
   l.lvl1();
-  println(p.topCollide);
+  p.enemyCollide();
+  println(p.topCollide, p.g);
+}
+
+void gameover() {
+  background(0);
+  fill(255, 0, 0);
+  textSize(100);
+  text("GAME OVER!", 350, 200);
 }
 
 void keyPressed() {
@@ -100,9 +122,28 @@ boolean leftCollide(Player p, Platform pl) {
 
 boolean rightCollide(Player p, Platform pl) {
   
-  if (p.x >= pl.x+pl.w && p.x <= pl.x+pl.w) {
+  if (p.x >= pl.x+pl.w && p.x <= pl.x+pl.w+1) {
     if (p.y > pl.y-p.h && p.y < pl.y+pl.h) {
     return true;
+    }
+  }
+  return false;
+}
+
+boolean intersectEnemy(Player p, Enemy e) {  
+  //distance of x-axis
+  float distanceX = (p.x + p.w/2) - (e.x + e.w/2);
+  //distance of y-axis
+  float distanceY = (p.y + p.h/2) - (e.y + e.h/2);
+
+  float halfW = p.w/2 + e.w/2;
+
+  float halfH = p.h/2 + e.h/2;
+
+  if (abs(distanceX) < halfW) {
+
+    if (abs(distanceY) < halfH) {
+      return true;
     }
   }
   return false;
