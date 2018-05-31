@@ -6,14 +6,16 @@ class Player {
   Player() {
     x = 0;
     y = 600;
-    w = 35;
-    h = 35;
+    w = 25;
+    h = 25;
     g = 0.1;      //gravity
     
     xSpeed = 0;
     ySpeed = 0;
-    maxSpeed = 10;
+    maxSpeed = 8;
    
+    leftCollide = false;
+    rightCollide = false;
   }
   
   void player() {
@@ -34,7 +36,9 @@ class Player {
       ySpeed = -7;
     } if (!topCollide) {
       ySpeed += g;
-    } 
+    } if (right && leftCollide && topCollide) {
+      xSpeed = 0;
+    }
     
     x += xSpeed;      
     y += ySpeed;
@@ -72,14 +76,19 @@ class Player {
   }
   
   void touchPlatformLeft(float locX) {  // player can't jump through left side of platforms
-    
+    x = x-5;
     leftCollide = true;
     x = locX-w;
   }
   
   void touchPlatformRight() { // player can't jump through right side of platforms
-    x+=5;
+    x = x+5;
     rightCollide = true;
+    
+  }
+  
+  void topLeftCollide() {
+    xSpeed = 0;
   }
   
   void enemyCollide() {

@@ -15,13 +15,16 @@ void setup() {
   p = new Player();
   l = new Level();
 //  e = new Enemy(1000, 600);
-  platforms = new Platform[4];              //draw platforms
-  platforms[0] = new Platform(0, 700, width, 200);
-  platforms[1] = new Platform(300, 650, 199, 10);
-  platforms[2] = new Platform(200, 500, 200, 100);
-  platforms[3] = new Platform(500, 400, 200, 250);
+  platforms = new Platform[7];              //draw platforms
+  platforms[0] = new Platform(500, 400, 200, 250);
+  platforms[1] = new Platform(900, 550, 200, 250);
+  platforms[2] = new Platform(0, 700, width, 200);
+  platforms[3] = new Platform(300, 640, 200, 10);
+  platforms[4] = new Platform(200, 500, 200, 100);
+  platforms[5] = new Platform(200, 200, 100, 50);
+  platforms[6] = new Platform(700, 550, 200, 100);
   enemies = new Enemy[1];
-  enemies[0] = new Enemy(1000, 600);
+  enemies[0] = new Enemy(1000, 600, 100, 100);
 }
 
 void draw() {
@@ -46,7 +49,7 @@ void lvl1() {
   p.move();
   l.lvl1();
   p.enemyCollide();
-  println(p.topCollide, p.g);
+  println(p.topCollide, p.ySpeed, p.leftCollide);
 }
 
 void gameover() {

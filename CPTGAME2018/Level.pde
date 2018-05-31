@@ -22,10 +22,16 @@ class Level {
       } if (rightCollide(p, platforms[i])) {
         p.touchPlatformRight();
         break;
+      } if (topCollide(p, platforms[i]) && leftCollide(p, platforms[i])) {
+        p.topLeftCollide();
       //} if (p.y >= platforms[0].y) {
         //p.y = platforms[0].y-p.h;
       } else {
         p.topCollide = false;
+        p.botCollide = false;
+        p.leftCollide = false;
+        p.rightCollide = false;
+        
       }
     }
     
@@ -34,12 +40,13 @@ class Level {
     }
     
 
-    enemies[0].x -= 5;
+  /*  enemies[0].x -= 5;
     if (enemies[0].x <= 900) {
       enemies[0].x += 20;
     } else if (enemies[0].x >= 1000) {
       enemies[0].x -= 5;
     }
+    */
   }
   
 }

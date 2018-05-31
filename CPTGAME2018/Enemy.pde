@@ -2,11 +2,11 @@ class Enemy extends Level {
   float x, y, w, h;
   float enemySpeed;
  
-  Enemy(float startX, float startY) {
+  Enemy(float startX, float startY, float startW, float startH) {
     x = startX;
     y = startY;
-    w = 50;
-    h = 50;
+    w = startW;
+    h = startH;
     
     enemySpeed = 0;
   }
