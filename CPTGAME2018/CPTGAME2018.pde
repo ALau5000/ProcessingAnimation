@@ -11,22 +11,25 @@ boolean left, right, up, down;
 void setup() {
   fullScreen();
   smooth();
-  screen = "lvl1";
-  p = new Player();
-  l = new Level();
-//  e = new Enemy(1000, 600);
-  platforms = new Platform[7];              //draw platforms
-  platforms[0] = new Platform(500, 400, 200, 250);
-  platforms[1] = new Platform(900, 550, 200, 250);
-  platforms[2] = new Platform(0, 700, width, 200);
-  platforms[3] = new Platform(300, 640, 200, 10);
-  platforms[4] = new Platform(200, 500, 200, 100);
-  platforms[5] = new Platform(200, 200, 100, 50);
-  platforms[6] = new Platform(700, 550, 200, 100);
+      screen = "lvl1";
+      p = new Player();
+      l = new Level();
+    //  e = new Enemy(1000, 600);
+  platforms = new Platform[8];              //draw platforms
+  platforms[0] = new Platform(0, 700, width, 200);
+  platforms[1] = new Platform(950, 550, 200, 100);
+  platforms[2] = new Platform(200, 500, 200, 100);
+  platforms[3] = new Platform(750, 650, 190, 10);
+  platforms[4] = new Platform(300, 640, 200, 10);
+  platforms[5] = new Platform(500, 400, 200, 250);
+  platforms[6] = new Platform(200, 200, 100, 50);
+  platforms[7] = new Platform(750, 500, 250, 100);
+  
+  
   enemies = new Enemy[1];
-  enemies[0] = new Enemy(1000, 600, 100, 100);
+  enemies[0] = new Enemy(1100, 600, 100, 100);
 }
-
+  
 void draw() {
   if (screen == "tutorial") {
     tutorial();
@@ -43,7 +46,7 @@ void tutorial() {
 }
 
 void lvl1() {
-  background(0, 0, 255);
+  background(135,206,250);
   p.player();
   p.boundaries();
   p.move();

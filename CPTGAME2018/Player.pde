@@ -16,6 +16,7 @@ class Player {
    
     leftCollide = false;
     rightCollide = false;
+    leftCollide = false;
   }
   
   void player() {
@@ -37,8 +38,8 @@ class Player {
     } if (!topCollide) {
       ySpeed += g;
     } if (right && leftCollide && topCollide) {
-      xSpeed = 0;
-    }
+      ySpeed = 0;
+    } 
     
     x += xSpeed;      
     y += ySpeed;
@@ -52,8 +53,8 @@ class Player {
   }
   
   void boundaries() {     //boundaries for player so he cant move out of screen
-    if (x >= width-50) {
-      x = width-50;        //player stays in place if he touches boundaries
+    if (x >= width-p.w) {
+      x = width-p.w;        //player stays in place if he touches boundaries
     } if (x <= 0) {
       x = 0;
     } if (y <= 0) {
@@ -76,7 +77,7 @@ class Player {
   }
   
   void touchPlatformLeft(float locX) {  // player can't jump through left side of platforms
-    x = x-5;
+    //x = x-5;
     leftCollide = true;
     x = locX-w;
   }
@@ -84,19 +85,23 @@ class Player {
   void touchPlatformRight() { // player can't jump through right side of platforms
     x = x+5;
     rightCollide = true;
+   
+    
     
   }
   
   void topLeftCollide() {
+    x = x-5;
+    leftCollide = true;
     xSpeed = 0;
   }
   
   void enemyCollide() {
-    for (int i = 0; i < enemies.length; i++) {
-      if (intersectEnemy(p, enemies[i])) {
-        screen = "gameover";
-      }
-    }
+   // for (int i = 0; i < enemies.length; i++) {
+     // if (intersectEnemy(p, enemies[i])) {
+       // screen = "gameover";
+    //  }
+  //  }
   }
 }
       
