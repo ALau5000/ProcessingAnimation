@@ -39,12 +39,16 @@ class Player {
       ySpeed += g;
     } if (right && leftCollide && topCollide) {
       ySpeed = 0;
-    } 
+    } if (up && leftCollide) {
+      //up = false;
+    } if (right && leftCollide) {
+      //ySpeed = 0;
+    }
     
     x += xSpeed;      
     y += ySpeed;
     
-    if (ySpeed >= maxSpeed) {
+    if (ySpeed >= maxSpeed) {    //player's maximum speed 
       g = 0;
     } else {
       g = 0.3;
@@ -67,8 +71,8 @@ class Player {
    void touchPlatformTop(float locY) {
      ySpeed = 0;      // if player touches platform, he stops moving down
      topCollide = true;  
-     y = locY-h; //player's location at y always stays -50 from platform when touching
-   }              // any platform. So player will always be standing on platform
+     y = locY-h; //player's location at y always stays -player height from platform when
+   }              // touching any platform. So player will always be standing on platform
    
    void touchPlatformBot() { // when player jumps and hits the bottom of a platform
     ySpeed = 0;
@@ -76,25 +80,23 @@ class Player {
     
   }
   
-  void touchPlatformLeft(float locX) {  // player can't jump through left side of platforms
-    //x = x-5;
+  void touchPlatformLeft() {  // player can't jump through left side of platforms
+    x = x-5;
     leftCollide = true;
-    x = locX-w;
+    right = false;
   }
   
   void touchPlatformRight() { // player can't jump through right side of platforms
     x = x+5;
     rightCollide = true;
-   
-    
-    
+    left = false;
   }
   
-  void topLeftCollide() {
+ /* void topLeftCollide() {
     x = x-5;
     leftCollide = true;
     xSpeed = 0;
-  }
+  }*/
   
   void enemyCollide() {
    // for (int i = 0; i < enemies.length; i++) {

@@ -3,6 +3,7 @@
 Player p;
 //Enemy e;
 Platform[] platforms;  //make class Platform into an array
+float platformSpeed;
 Enemy[] enemies;       //make class Enemy into an array
 Level l;
 String screen;
@@ -11,23 +12,37 @@ boolean left, right, up, down;
 void setup() {
   fullScreen();
   smooth();
-      screen = "lvl1";
-      p = new Player();
-      l = new Level();
-    //  e = new Enemy(1000, 600);
-  platforms = new Platform[8];              //draw platforms
-  platforms[0] = new Platform(0, 700, width, 200);
-  platforms[1] = new Platform(950, 550, 200, 100);
-  platforms[2] = new Platform(200, 500, 200, 100);
-  platforms[3] = new Platform(750, 650, 190, 10);
-  platforms[4] = new Platform(300, 640, 200, 10);
-  platforms[5] = new Platform(500, 400, 200, 250);
-  platforms[6] = new Platform(200, 200, 100, 50);
-  platforms[7] = new Platform(750, 500, 250, 100);
+  screen = "tutorial";
+  p = new Player();
+  l = new Level();
+  //  e = new Enemy(1000, 600);
+  platforms = new Platform[12];              //draw platforms
+  platforms[0] = new Platform(950, 550, 200, 150);
+  platforms[1] = new Platform(0, 700, width, 200);
+  platforms[2] = new Platform(500, 400, 200, 250);
+  platforms[3] = new Platform(300, 640, 200, 10);        // lvl 1
+  platforms[4] = new Platform(200, 500, 200, 100);
+  platforms[5] = new Platform(700, 640, 190, 10);
+  platforms[6] = new Platform(750, 450, 100, 150);
+  platforms[7] = new Platform(200, 200, 100, 50);
+  //------------------------------------------------
+  platforms[8] = new Platform(400, 580, 100, 120);
+  platforms[9] = new Platform(200, 620, 100, 170);
+  platforms[10] = new Platform(0, 700, width, 200);
+  platforms[11] = new Platform(100, 530, 130, 20);
+  
+  platformSpeed = 0;
+  for(int i = 0; i < platforms.length; i++) {
+    platforms[i].y += platformSpeed;
+    platforms[i].x += platformSpeed;
+  }
+ 
   
   
-  enemies = new Enemy[1];
-  enemies[0] = new Enemy(1100, 600, 100, 100);
+  enemies = new Enemy[2];
+  enemies[0] = new Enemy(1100, 600, 50, 50);
+  enemies[1] = new Enemy(1100, 400, 100, 100);
+  
 }
   
 void draw() {
@@ -41,8 +56,12 @@ void draw() {
 }
 
 void tutorial() {
-  background(255, 0, 0);
+  background(127, 0, 0);
   l.tutorial();
+  p.player();
+  p.boundaries();
+  p.move();
+  p.enemyCollide();
 }
 
 void lvl1() {
@@ -128,7 +147,7 @@ boolean leftCollide(Player p, Platform pl) {
 
 boolean rightCollide(Player p, Platform pl) {
   
-  if (p.x >= pl.x+pl.w && p.x <= pl.x+pl.w+1) {
+  if (p.x >= pl.x+pl.w && p.x <= pl.x+pl.w+5) {
     if (p.y > pl.y-p.h && p.y < pl.y+pl.h) {
     return true;
     }

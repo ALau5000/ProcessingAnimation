@@ -1,6 +1,6 @@
 class Platform {
   float x, y, w, h;
-
+  
   Platform(float startX, float startY, float startW, float startH) {
     x = startX;
     y = startY;
