@@ -68,7 +68,15 @@ class Player {
     }
   }
   
-   void touchPlatformTop(float locY) {
+  void noFall() {
+    if (p.y >= 705) {
+      p.y = 700-p.h-5;      //sometimes player falls through ground 
+      right = false;        //put them back on platform
+      left = false;
+    }
+  }
+  
+  void touchPlatformTop(float locY) {
      ySpeed = 0;      // if player touches platform, he stops moving down
      topCollide = true;  
      y = locY-h; //player's location at y always stays -player height from platform when
