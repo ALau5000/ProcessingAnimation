@@ -3,22 +3,22 @@ import java.awt.event.KeyEvent;
 Player p;        
 Portal po;
 Level l;
-Platform[] platforms;  //make classes into arrays
+Platform[] platforms;  
 Enemy[] enemies;       
 Sword[] swords;
 Fireball[] fireballs;
 Pokemon[] pokemons;
 Portal[] portals;  
 float platformSpeed;
-PImage pokemoncard, magikarpCard, roastedchicken, sword, fireball, portal;
+PImage pokemoncard, magikarpCard, roastedchicken, sword, swordleft, fireball, portal;
 String screen;
 boolean left, right, up, down, hitEnemy;
 int cardCount, enemySpeed;  
 
 void setup() {
-  size(1366, 768);
+  fullScreen();
   smooth();
-  screen = "tutorial";
+  screen = "lvl1";
   p = new Player();
   l = new Level();
   sword = loadImage("sword.png");
@@ -27,35 +27,39 @@ void setup() {
   roastedchicken = loadImage("roastedchicken.png");
   fireball = loadImage("fireball.png");
   portal = loadImage("portal.png");
+ // swordleft = loadImage("swordleft.png");
   cardCount = 0;
   hitEnemy = false;
   enemySpeed = 0;
   //  e = new Enemy(1000, 600);
-  platforms = new Platform[22];     //location of platforms
-  platforms[0] = new Platform(950, 500, 200, 200);
-  platforms[1] = new Platform(0, 700, width, 200);
-  platforms[2] = new Platform(500, 400, 200, 250);
-  platforms[3] = new Platform(200, 450, 200, 100);
-  platforms[4] = new Platform(300, 620, 200, 30);        // lvl 1
-  platforms[5] = new Platform(700, 620, 190, 30);
-  platforms[6] = new Platform(750, 325, 100, 275);
-  platforms[7] = new Platform(200, 200, 100, 50);
+  platforms = new Platform[23];     //location of platforms
   //------------------------------------------------
-  platforms[8] = new Platform(200, 630, 100, 70);
-  platforms[9] = new Platform(375, 580, 100, 120);
-  platforms[10] = new Platform(550, 350, 100, 400);      //tutorial
-  platforms[11] = new Platform(0, 700, width, 68);
-  platforms[12] = new Platform(375, 400, 100, 13);
-  platforms[13] = new Platform(475, 695, 75, 10);
-  platforms[14] = new Platform(80, 530, 130, 20);
-  platforms[15] = new Platform(300, 125, 100, 10);
-  platforms[16] = new Platform(550, 0, 100, 200);
-  platforms[17] = new Platform(800, 400, 200, 50);
-  platforms[18] = new Platform(650, 350, 150, 10);
-  platforms[19] = new Platform(1000, 400, 50, 150);
-  platforms[20] = new Platform(900, 500, 50, 150);
-  platforms[21] = new Platform(1100, 250, 300, 250);
+  platforms[0] = new Platform(200, 630, 100, 70);
+  platforms[1] = new Platform(375, 580, 100, 120);
+  platforms[2] = new Platform(550, 350, 100, 400);      //tutorial
+  platforms[3] = new Platform(0, 700, width, 68);
+  platforms[4] = new Platform(375, 400, 100, 13);
+  platforms[5] = new Platform(475, 695, 75, 10);
+  platforms[6] = new Platform(80, 530, 130, 20);
+  platforms[7] = new Platform(300, 125, 100, 10);
+  platforms[8] = new Platform(550, 0, 100, 200);
+  platforms[9] = new Platform(800, 400, 200, 50);
+  platforms[10] = new Platform(650, 350, 150, 10);
+  platforms[11] = new Platform(1000, 400, 50, 150);
+  platforms[12] = new Platform(900, 500, 50, 150);
+  platforms[13] = new Platform(1100, 250, 300, 250);
 //-------------------------------------------------------
+  platforms[14] = new Platform(950, 500, 200, 200);
+  platforms[15] = new Platform(0, 700, width, 200);
+  platforms[16] = new Platform(0, 100, 100, 30);
+  platforms[17] = new Platform(50, 350, 100, 30);
+  platforms[18] = new Platform(200, 200, 50, 50);
+  platforms[19] = new Platform(400, 150, 50, 50);        // lvl 1
+  platforms[20] = new Platform(700, 0, 100, 200);
+  platforms[21] = new Platform(600, 200, 200, 50);
+  platforms[22] = new Platform(0, 600, 100, 30);
+  
+  
   
   platformSpeed = 0;
   for(int i = 0; i < platforms.length; i++) {
@@ -73,10 +77,15 @@ void setup() {
   pokemons = new Pokemon[1];      //location of pokemon cards
   pokemons[0] = new Pokemon(350, 75, 30, 50);
   
-  swords = new Sword[3];      //location of swords
+  swords = new Sword[7];      //location of swords
   swords[0] = new Sword(307, 700, 20, 120);
-  swords[1] = new Sword(327, 700, 20, 120);
+  swords[1] = new Sword(327, 700, 20, 120);      //tutorial
   swords[2] = new Sword(347, 700, 20, 120);
+  //--------------------------------------------
+  swords[3] = new Sword(250, 220, 100, 10); 
+  swords[4] = new Sword(600, 100, 100, 10); 
+  swords[5] = new Sword(600, 120, 100, 10);       //lvl1
+  swords[6] = new Sword(600, 140, 100, 10); 
   
   portals = new Portal[1];    //location of portal
   portals[0] = new Portal(1320, 690, 10, 10);
@@ -348,4 +357,4 @@ void mouseClicked() {
   p.y = mouseY;
   p.g = 0;
   p.g = 0.3;
-}
+}  
