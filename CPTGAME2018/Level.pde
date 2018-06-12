@@ -35,11 +35,11 @@ class Level {
       }
     } */ 
     
-    for (int i = 8; i < platforms.length; i++) {    // show the visual of the level
+    for (int i = 0; i < 14; i++) {    // show the visual of the level
       platforms[i].display();
     }
     
-    for (int i = 8; i < platforms.length; i++) {    // apply collisions
+    for (int i = 0; i < 14; i++) {    // apply collisions
       if (topCollide(p, platforms[i])) {
         p.touchPlatformTop(platforms[i].y);
         break;
@@ -65,27 +65,27 @@ class Level {
       }
     }
 
-    if (topCollide(p, platforms[14])) {
-      if (platforms[14].y >= 200) {        //platform movement
-        platforms[14].y -= 2;              //move up if on top of platform
+    if (topCollide(p, platforms[6])) {
+      if (platforms[6].y >= 200) {        //platform movement
+        platforms[6].y -= 2;              //move up if on top of platform
       }
     } 
     
-    if (!topCollide(p, platforms[14])) {
-      if (platforms[14].y <= 530) {
-        platforms[14].y += 3;        //move down if not on top of platform
+    if (!topCollide(p, platforms[6])) {
+      if (platforms[6].y <= 530) {
+        platforms[6].y += 3;        //move down if not on top of platform
       }
     } 
     
-    if (topCollide(p, platforms[13])) {
-      if (platforms[13].y >= 581) {
-        platforms[13].y -= 5;
+    if (topCollide(p, platforms[5])) {
+      if (platforms[5].y >= 581) {
+        platforms[5].y -= 5;
       }
     } 
     
-    if (!topCollide(p, platforms[13])) {
-      if (platforms[13].y <= 690) {
-        platforms[13].y += 1;
+    if (!topCollide(p, platforms[5])) {
+      if (platforms[5].y <= 690) {
+        platforms[5].y += 1;
       }
     }
     
@@ -138,7 +138,11 @@ class Level {
   }
 
   void lvl1() {
-    for (int i = 0; i < 7; i++) {    // show the visual of the level
+    for (int i = 3; i < swords.length; i++) {
+      swords[i].display();
+    }
+    
+    for (int i = 14; i < platforms.length; i++) {    // show the visual of the level
       platforms[i].display();
     }
 
@@ -150,7 +154,7 @@ class Level {
       enemies[i].mediocre();
     }
 
-    for (int i = 0; i < 7; i++) {    // apply collisions
+    for (int i = 14; i < platforms.length; i++) {    // apply collisions
       if (topCollide(p, platforms[i])) {
         p.touchPlatformTop(platforms[i].y);
         break;
@@ -175,7 +179,14 @@ class Level {
         p.rightCollide = false;
       }
     }
-
+    
+    /*if (platforms[17].x <= 650) {
+      platformSpeed = 5;
+      platforms[17].x += platformSpeed;
+    } else if (platforms[17].x >= 50) {
+      platforms[17].x += -platformSpeed;
+    }*/
+    
     /* for(int i = 0; i < 2; i++) {
      if (enemyTopCollide(enemies[i], platforms[i])) {
      enemies[i].touchPlatformTop(enemies[i].y);

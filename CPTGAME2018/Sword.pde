@@ -14,4 +14,9 @@ class Sword {
     rect(x, y, w, h);
     image(sword, x, y, w, h);
   }
+ 
+  void left() {
+    rect(x, y, w, h);
+    image(pokemoncard, x, y, w, h);
+  }
 }
