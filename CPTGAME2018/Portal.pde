@@ -8,4 +8,9 @@ class Portal {
     h = startH;
   }
   
+  void display() {
+    image(portal, x-30, y-70, w+50, h+70);
+    rect(x, y, w, h);
+  }
+  
 }

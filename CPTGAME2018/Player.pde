@@ -25,6 +25,16 @@ class Player {
     rect(x, y, w, h);
   }
   
+  void playerScore() {
+    textSize(20);
+    text("Pokemon Cards: " + cardCount + "/4", 20, 20);
+  }
+  
+/*  void shoot() {
+    if (key == KeyEvent.VK_RIGHT) {
+      egg.shootRight();
+    }
+  } */
   
   void move() {
     if (left) {        //move left
@@ -53,7 +63,14 @@ class Player {
     } else {
       g = 0.3;
     }
-   
+  }
+  
+  void shoot() {
+    if (key == RIGHT) {
+     // shootRight();
+    } else if (key == LEFT) {
+    //  shootLeft();
+    }
   }
   
   void boundaries() {     //boundaries for player so he cant move out of screen

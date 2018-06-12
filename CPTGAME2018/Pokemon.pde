@@ -1,16 +1,16 @@
 class Pokemon {
   float x, y, w, h;
   
-  Pokemon(float startX, float startY) {
+  Pokemon(float startX, float startY, float startW, float startH) {
     x = startX;
     y = startY;
-    w = 50;
-    h = 50;
+    w = startW;
+    h = startH;
   }
   
   void display() {
-    image(pokemoncard, x, y, w, h);
+    rect(x, y, w, h);
+    image(pokemoncard, x-10, y, w+20, h);
   }
   
 }
-    
